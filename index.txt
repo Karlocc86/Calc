@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Calc - Precision Monolith</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#071e27",
+                        "inverse-surface": "#2d3133",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#526772",
+                        "background": "#f8f9fb",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary": "#00488d",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#cadcff",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#cfe6f2",
+                        "on-tertiary-container": "#ffd0cb",
+                        "secondary-fixed-dim": "#b4cad6",
+                        "primary-fixed": "#d6e3ff",
+                        "on-tertiary-fixed": "#410003",
+                        "surface": "#f8f9fb",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#cfe6f2",
+                        "secondary": "#4c616c",
+                        "surface-bright": "#f8f9fb",
+                        "outline": "#727783",
+                        "inverse-primary": "#a8c8ff",
+                        "surface-container": "#eceef0",
+                        "on-surface": "#191c1e",
+                        "outline-variant": "#c2c6d4",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d8dadc",
+                        "tertiary": "#96000f",
+                        "tertiary-container": "#bb1f21",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-fixed": "#ffdad6",
+                        "on-surface-variant": "#424752",
+                        "on-primary-fixed": "#001b3d",
+                        "primary-container": "#005fb8",
+                        "on-secondary-fixed-variant": "#354a53",
+                        "tertiary-fixed-dim": "#ffb4ac",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-fixed-variant": "#00468b",
+                        "surface-tint": "#005db5",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#93000e",
+                        "primary-fixed-dim": "#a8c8ff"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .kinetic-shadow {
+            box-shadow: 0 20px 80px -10px rgba(25, 28, 30, 0.08);
+        }
+        .clear-gradient {
+            background: linear-gradient(135deg, #96000f 0%, #bb1f21 100%);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-slate-50 dark:bg-slate-950 w-full docked full-width top-0">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-black text-slate-900 dark:text-slate-100 uppercase tracking-widest font-['Space_Grotesk']">
+                Kinetic Calc
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-blue-700 dark:text-blue-400 font-bold font-['Space_Grotesk'] transition-colors" href="#">Calculator</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors px-3 py-1 rounded-lg" href="#">History</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors px-3 py-1 rounded-lg" href="#">Scientific</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-500 hover:bg-slate-200/50 p-2 rounded-full transition-colors active:scale-95 duration-150" data-icon="history">history</button>
+<button class="material-symbols-outlined text-slate-500 hover:bg-slate-200/50 p-2 rounded-full transition-colors active:scale-95 duration-150" data-icon="settings">settings</button>
+</div>
+</div>
+<div class="bg-slate-200/50 dark:bg-slate-800/50 h-px w-full"></div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-6 md:p-10">
+<div class="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Side: Editorial Context (Bento Style) -->
+<div class="lg:col-span-4 space-y-6 hidden lg:block">
+<div class="bg-surface-container rounded-xl p-8 space-y-4">
+<span class="text-primary font-headline font-bold text-sm tracking-widest uppercase">Precision Mode</span>
+<h2 class="text-3xl font-headline font-black leading-tight text-on-surface">THE KINETIC MONOLITH</h2>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Engineered for surgical accuracy. Experience mathematical clarity through high-contrast tonal layering and architectural spacing.
+                    </p>
+</div>
+<div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/15">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+<span class="font-headline font-bold text-xs uppercase tracking-tighter">Live Session Data</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Precision Level</span>
+<span class="text-on-surface font-bold">16 Decimal Places</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Calculation Mode</span>
+<span class="text-on-surface font-bold">Standard Decimal</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: The Calculator Instrument -->
+<div class="lg:col-span-8 bg-surface-container rounded-xl p-4 md:p-8 kinetic-shadow w-full">
+<!-- Section 1: The Display (Hero Component) -->
+<div class="bg-surface-container-lowest rounded-xl p-8 mb-8 text-right flex flex-col justify-end min-h-[160px] overflow-hidden">
+<div class="text-on-surface-variant font-headline text-lg tracking-normal mb-2 flex justify-end gap-3 opacity-60">
+<span>1,240.50</span>
+<span class="text-primary font-bold">×</span>
+<span>42</span>
+</div>
+<div class="text-on-surface font-headline font-black text-6xl md:text-7xl tracking-tighter truncate">
+                        52,101.00
+                    </div>
+</div>
+<!-- Section 2: Input Controls -->
+<div class="grid grid-cols-1 md:grid-cols-7 gap-4 mb-8">
+<!-- Number A Input -->
+<div class="md:col-span-3 space-y-2">
+<label class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Number A</label>
+<div class="bg-surface-container-high rounded-xl p-4 flex items-center group focus-within:ring-2 ring-primary/20 transition-all">
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-headline font-bold text-xl outline-none" placeholder="0" type="text" value="1,240.50"/>
+</div>
+</div>
+<!-- Operator Selector -->
+<div class="md:col-span-1 space-y-2">
+<label class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant text-center block md:text-left md:ml-1">Op</label>
+<div class="bg-primary rounded-xl h-[60px] flex items-center justify-center cursor-pointer hover:bg-surface-tint transition-colors group">
+<span class="text-on-primary font-headline font-black text-2xl">×</span>
+</div>
+</div>
+<!-- Number B Input -->
+<div class="md:col-span-3 space-y-2">
+<label class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Number B</label>
+<div class="bg-surface-container-high rounded-xl p-4 flex items-center group focus-within:ring-2 ring-primary/20 transition-all">
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-headline font-bold text-xl outline-none" placeholder="0" type="text" value="42"/>
+</div>
+</div>
+</div>
+<!-- Section 3: Keypad & Clear -->
+<div class="grid grid-cols-4 gap-4">
+<!-- Numbers 1-9 -->
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">7</button>
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">8</button>
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">9</button>
+<button class="clear-gradient h-20 rounded-xl flex items-center justify-center font-headline font-black text-2xl text-white active:scale-95 transition-all shadow-lg shadow-tertiary/20">C</button>
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">4</button>
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">5</button>
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">6</button>
+<button class="bg-surface-container-high h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-surface-dim transition-all active:scale-95">÷</button>
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">1</button>
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">2</button>
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">3</button>
+<button class="bg-surface-container-high h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-surface-dim transition-all active:scale-95">−</button>
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">0</button>
+<button class="bg-secondary-container h-20 rounded-xl flex items-center justify-center font-headline font-bold text-2xl text-on-surface active:bg-secondary-fixed-dim transition-all active:scale-95">.</button>
+<button class="bg-primary col-span-2 h-20 rounded-xl flex items-center justify-center font-headline font-black text-2xl text-on-primary active:bg-surface-tint transition-all active:scale-95 shadow-xl shadow-primary/20">CALCULATE</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 full-width border-t border-slate-200 dark:border-slate-800">
+<div class="w-full py-8 px-6 flex flex-col md:flex-row justify-between items-center gap-4 max-w-7xl mx-auto">
+<div class="text-sm font-bold text-slate-900 dark:text-slate-100 font-headline uppercase tracking-widest">
+                KINETIC PRECISION
+            </div>
+<div class="flex gap-6">
+<a class="font-['Inter'] text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors opacity-80 hover:opacity-100" href="#">Documentation</a>
+<a class="font-['Inter'] text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors opacity-80 hover:opacity-100" href="#">Scientific Mode</a>
+<a class="font-['Inter'] text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors opacity-80 hover:opacity-100 text-blue-600 dark:text-blue-400 underline" href="#">API</a>
+<a class="font-['Inter'] text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors opacity-80 hover:opacity-100" href="#">Privacy</a>
+</div>
+<div class="font-['Inter'] text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                © 2024 Kinetic Monolith Precision. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>
