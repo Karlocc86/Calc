@@ -24,7 +24,16 @@ function handleClick(number) {
     let ultimoCaracter = fullOp.slice(-1);
     
     if (operadores.includes(number) && operadores.includes(ultimoCaracter)) {
-        return; 
+        if (number === '-' && ultimoCaracter !== '-') {
+            // Permite segundo operando negativo, ej: 5+-3, 5x-2
+        } else {
+            return;
+        }
+    }
+
+    if (number === '.') {
+        const ultimoSegmento = fullOp.match(/[\d.]+$/)?.[0] || '';
+        if (ultimoSegmento.includes('.')) return;
     }
 
     fullOp = fullOp + number;
